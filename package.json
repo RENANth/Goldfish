@@ -1,0 +1,38 @@
+{
+  "name": "peixe-pixel-supremo",
+  "version": "0.1.0",
+  "description": "Peixe Pixel Supremo — um peixe pixelado que nada na sua área de trabalho",
+  "main": "main.js",
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "slice-sprites": "node scripts/slice-sprites.js",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "optionalDependencies": {
+    "robotjs": "^0.6.0"
+  },
+  "devDependencies": {
+    "electron": "^26.0.0",
+    "electron-builder": "^24.6.0",
+    "sharp": "^0.33.5"
+  },
+  "build": {
+    "appId": "com.peixe.pixel.supremo",
+    "productName": "Peixe Pixel Supremo",
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/**/*",
+      "skins/**/*"
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "artifactName": "PeixePixelSupremo-Setup-${version}.exe"
+    }
+  }
+}

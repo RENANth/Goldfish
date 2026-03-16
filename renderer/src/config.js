@@ -1,0 +1,19 @@
+export const CONFIG = {
+    PHRASE_INTERVAL: 12000,
+    SOUND_INTERVAL: 18000,
+    MOUSE_FLEE_DIST: 250,
+    PHRASES: [
+        'SALVA ESSE CÓDIGO AGORA.', 'EU SEI O QUE VOCÊ FEZ.', 'COMPILA DIREITO.',
+        'PARA DE PROCRASTINAR.', 'VOCÊ NÃO BEBEU ÁGUA.', 'TESTE UNITÁRIO > DEPURAÇÃO',
+        'CLEAN CODE AGORA!', 'GIT COMMIT -m "WIP"', 'CTRL+Z VAI SALVAR',
+        'CAFÉ NA VEIA 🐟', 'REFATORE ISSO AÍ', 'NAO MEXA NO MAIN',
+        'STACK OVERFLOW <3', 'DEBUGAR É ARTE', 'BEBA ÁGUA! 💧',
+        'ARRUMA ESSA POSTURA! 🪑', 'RESPIRA FUNDO...', 'DESCANSA OS OLHOS 👀'
+    ],
+    HAPPY_PHRASES: ["NHAM NHAM!", "QUE DELÍCIA!", "TÔ FELIZ!", "OBRIGADO!", "❤"],
+    PERSONALITIES: {
+        CALMO: 'calmo',
+        TRAVESSO: 'travesso',
+        CAOTICO: 'caotico'
+    }
+};

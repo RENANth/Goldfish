@@ -1,0 +1,47 @@
+git : remote: error: 
+Trace: 104ad17399fa45df
+3e69523334b59455a7d2c4b
+2659b7aeb4644ad23779383
+52        
+No linha:1 caractere:1
++ git push -uf origin 
+main 2> push_error.txt
++ ~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo     
+         : NotSpecifi  
+  ed: (remote: error   
+ : ...7938352          
+  :String) [], Rem    
+oteException
+    + FullyQualifiedEr 
+   rorId : NativeComm  
+  andError
+ 
+remote: error: See 
+https://gh.io/lfs for 
+more information.      
+  
+remote: error: File dis
+t/win-unpacked/Peixe 
+Pixel Supremo.exe is 
+158.31 MB; this 
+exceeds GitHub's file 
+size limit of 100.00 
+MB        
+remote: error: GH001: 
+Large files detected. 
+You may want to try 
+Git Large File Storage 
+- https://git-lfs.githu
+b.com.        
+To https://github.com/R
+ENANth/Goldfish.git
+ ! [remote rejected] 
+main -> main 
+(pre-receive hook 
+declined)
+error: failed to push 
+some refs to 'https://g
+ithub.com/RENANth/Goldf
+ish.git'
