@@ -32,9 +32,11 @@ O peixe possui três estados mentais principais que alternam automaticamente:
 ## 🚀 Como Executar
 
 ### Pré-requisitos
+
 - [Node.js](https://nodejs.org/) instalado.
 
 ### Instalação
+
 1. Clone ou baixe este repositório.
 2. No terminal da pasta do projeto, instale as dependências:
    ```powershell
@@ -42,13 +44,17 @@ O peixe possui três estados mentais principais que alternam automaticamente:
    ```
 
 ### Iniciando o Pet
+
 Para ver o peixe nadando agora mesmo:
+
 ```powershell
 npm start
 ```
 
 ### Gerando um Executável (.exe)
+
 Para criar uma versão que você pode enviar para os amigos:
+
 ```powershell
 npm run dist
 ```
@@ -76,15 +82,19 @@ Você pode criar novas aparências para o seu peixe facilmente:
      }
    }
    ```
-5. Mude a variável `skinName` no arquivo `renderer/renderer.js` para o nome da sua pasta.
+5. Mude a variável `skinName` no arquivo `renderer/src/state.js` para o nome da sua pasta.
 
 ---
 
 ## 🛠️ Estrutura do Projeto
 
-- `main.js`: Coração do app, gerencia a transparência e janelas do Windows.
-- `renderer/`: Contém a lógica visual e o "cérebro" do peixe (`renderer.js`).
-- `skins/`: Onde ficam guardadas as diferentes aparências (padrão: `goldfish`).
+- `main.js`: Processo principal do Electron (janela, menu de contexto e bootstrap).
+- `preload.js`: Bridge segura entre renderer e main process via IPC.
+- `src/main/`: Módulos do processo principal (`ipc.js`, `windowTracker.js`).
+- `renderer/index.html` + `renderer/styles.css`: Base visual da aplicação.
+- `renderer/src/`: Lógica modular do pet (`main.js`, física, desenho, áudio, input e estado).
+- `skins/`: Aparências do peixe (padrão: `goldfish`).
+- `scripts/`: Utilitários de assets e scripts auxiliares.
 
 ---
 
@@ -92,6 +102,19 @@ Você pode criar novas aparências para o seu peixe facilmente:
 
 - **Mover Cursor**: O recurso de mover o cursor depende da biblioteca `robotjs`. Se não conseguir instalar, o app funcionará normalmente, apenas sem essa interação física.
 - **Sempre no Topo**: O peixe é configurado para ficar acima de outras janelas, mas você ainda consegue clicar "através" dele para usar outros programas.
+- **Windows Primeiro**: A integração de rastreamento de janela ativa foi feita para `win32` com PowerShell.
 
 ---
-*Feito com 💙 para animar o seu desktop.*
+
+## ✅ Qualidade de Código
+
+Scripts úteis disponíveis:
+
+```powershell
+npm run format
+npm run format:check
+```
+
+---
+
+_Feito com 💙 para animar o seu desktop._

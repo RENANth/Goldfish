@@ -8,6 +8,8 @@
   "scripts": {
     "start": "electron .",
     "slice-sprites": "node scripts/slice-sprites.js",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "pack": "electron-builder --dir",
     "dist": "electron-builder"
   },
@@ -17,6 +19,7 @@
   "devDependencies": {
     "electron": "^26.0.0",
     "electron-builder": "^24.6.0",
+    "prettier": "^3.6.2",
     "sharp": "^0.33.5"
   },
   "build": {
