@@ -1,10 +1,10 @@
-const fs = require('fs').promises;
-const path = require('path');
-const sharp = require('sharp');
+const fs = require("fs").promises;
+const path = require("path");
+const sharp = require("sharp");
 
 (async () => {
-  const framesDir = path.join(__dirname, '..', 'skins', 'default', 'frames');
-  const backupDir = path.join(path.dirname(framesDir), 'frames-backup');
+  const framesDir = path.join(__dirname, "..", "skins", "default", "frames");
+  const backupDir = path.join(path.dirname(framesDir), "frames-backup");
   await fs.mkdir(backupDir, { recursive: true });
 
   const files = await fs.readdir(framesDir);
@@ -20,7 +20,10 @@ const sharp = require('sharp');
 
     const raw = await img.raw().toBuffer();
 
-    let minX = width, minY = height, maxX = 0, maxY = 0;
+    let minX = width,
+      minY = height,
+      maxX = 0,
+      maxY = 0;
     for (let y = 0; y < height; y++) {
       for (let x = 0; x < width; x++) {
         const idx = (y * width + x) * 4;
@@ -35,7 +38,7 @@ const sharp = require('sharp');
     }
 
     if (maxX < minX || maxY < minY) {
-      console.log('Skipping (empty):', file);
+      console.log("Skipping (empty):", file);
       continue;
     }
 
@@ -50,17 +53,17 @@ const sharp = require('sharp');
     const targetW = Math.max(1, Math.round(cropW * scale));
     const targetH = Math.max(1, Math.round(cropH * scale));
 
-    const tmpOut = src + '.tmp.png';
+    const tmpOut = src + ".tmp.png";
     await sharp(src)
       .extract({ left, top, width: cropW, height: cropH })
-      .resize(targetW, targetH, { fit: 'contain' })
+      .resize(targetW, targetH, { fit: "contain" })
       .toFile(tmpOut);
     await fs.rename(tmpOut, src);
 
-    console.log('Processed:', file, '->', `${targetW}x${targetH}`);
+    console.log("Processed:", file, "->", `${targetW}x${targetH}`);
   }
 
-  console.log('All frames processed. Backups in skins/default/frames-backup');
+  console.log("All frames processed. Backups in skins/default/frames-backup");
 })().catch((err) => {
   console.error(err);
   process.exit(1);

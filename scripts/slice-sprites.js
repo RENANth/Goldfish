@@ -4,19 +4,19 @@
  * Uso: node scripts/slice-sprites.js
  */
 
-const path = require('path');
-const fs = require('fs');
+const path = require("path");
+const fs = require("fs");
 
-const sharp = require('sharp');
+const sharp = require("sharp");
 
 const COLS = 2;
 const ROWS = 3;
-const SHEET_PATH = path.join(__dirname, '..', 'skins', 'default', 'sheet.png');
-const OUT_DIR = path.join(__dirname, '..', 'skins', 'default', 'frames');
+const SHEET_PATH = path.join(__dirname, "..", "skins", "default", "sheet.png");
+const OUT_DIR = path.join(__dirname, "..", "skins", "default", "frames");
 
 async function main() {
   if (!fs.existsSync(SHEET_PATH)) {
-    console.error('Arquivo não encontrado:', SHEET_PATH);
+    console.error("Arquivo não encontrado:", SHEET_PATH);
     process.exit(1);
   }
 
@@ -32,7 +32,9 @@ async function main() {
   const frameHeight = Math.floor(height / ROWS);
 
   console.log(`Sprite sheet: ${width}x${height}`);
-  console.log(`Células: ${COLS}x${ROWS} → ${frameWidth}x${frameHeight} por frame`);
+  console.log(
+    `Células: ${COLS}x${ROWS} → ${frameWidth}x${frameHeight} por frame`,
+  );
   console.log(`Exportando para: ${OUT_DIR}\n`);
 
   for (let i = 0; i < COLS * ROWS; i++) {
@@ -54,13 +56,19 @@ async function main() {
       left: Math.floor(left),
       top: Math.floor(top),
       width: Math.min(Math.floor(w), width - Math.floor(left)),
-      height: Math.min(Math.floor(h), height - Math.floor(top))
+      height: Math.min(Math.floor(h), height - Math.floor(top)),
     };
 
-    const cellBuffer = await sharp(sheetBuffer).extract(extractOpts).png().toBuffer();
+    const cellBuffer = await sharp(sheetBuffer)
+      .extract(extractOpts)
+      .png()
+      .toBuffer();
     let outBuffer;
     try {
-      outBuffer = await sharp(cellBuffer).trim({ threshold: 1 }).png().toBuffer();
+      outBuffer = await sharp(cellBuffer)
+        .trim({ threshold: 1 })
+        .png()
+        .toBuffer();
     } catch (err) {
       outBuffer = cellBuffer;
     }
@@ -69,7 +77,7 @@ async function main() {
     console.log(`  frame-${i}.png → ${meta.width}x${meta.height}`);
   }
 
-  console.log('\nConcluído. 6 PNGs em skins/default/frames/');
+  console.log("\nConcluído. 6 PNGs em skins/default/frames/");
 }
 
 main().catch((err) => {

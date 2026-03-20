@@ -1,31 +1,18 @@
 {
-    "frameWidth": 64,
-    "frameHeight": 64,
-    "cols": 2,
-    "rows": 2,
-    "fps": 8,
-    "displayScale": 0.5,
-    "drawOffset": {
-        "x": 0,
-        "y": 0
-    },
-    "frameInset": 0,
-    "animations": {
-        "swim": [
-            0,
-            1,
-            2,
-            3
-        ],
-        "bite": [
-            0,
-            1,
-            2,
-            3
-        ],
-        "turn": [
-            0,
-            1
-        ]
-    }
+  "frameWidth": 64,
+  "frameHeight": 64,
+  "cols": 2,
+  "rows": 2,
+  "fps": 8,
+  "displayScale": 0.5,
+  "drawOffset": {
+    "x": 0,
+    "y": 0
+  },
+  "frameInset": 0,
+  "animations": {
+    "swim": [0, 1, 2, 3],
+    "bite": [0, 1, 2, 3],
+    "turn": [0, 1]
+  }
 }
