@@ -12,4 +12,8 @@ contextBridge.exposeInMainWorld("api", {
   trashItem: (filePath) => ipcRenderer.invoke("trash-item", filePath),
   onActiveWindowBounds: (callback) =>
     ipcRenderer.on("active-window-bounds", (event, bounds) => callback(bounds)),
+  getPreferences: () => ipcRenderer.invoke("get-preferences"),
+  setPreferences: (prefs) => ipcRenderer.invoke("set-preferences", prefs),
+  addCustomPhrase: (phrase) => ipcRenderer.invoke("add-custom-phrase", phrase),
+  getUserDataPath: () => ipcRenderer.invoke("get-user-data-path"),
 });

@@ -1,6 +1,13 @@
 const { ipcMain, screen, shell } = require("electron");
 const path = require("path");
 const fs = require("fs");
+const {
+  getPreferences,
+  setPreference,
+  setPreferences,
+  addCustomPhrase,
+  getUserDataPath,
+} = require("./store");
 
 let robot = null;
 try {
@@ -83,6 +90,16 @@ function initIPC(appDir) {
       return { ok: false, reason: e.message };
     }
   });
+
+  ipcMain.handle("get-preferences", () => getPreferences());
+  ipcMain.handle("set-preferences", (event, prefs) => {
+    setPreferences(prefs);
+    return { ok: true };
+  });
+  ipcMain.handle("add-custom-phrase", (event, phrase) => ({
+    ok: addCustomPhrase(phrase),
+  }));
+  ipcMain.handle("get-user-data-path", () => getUserDataPath());
 }
 
 function setIgnoreMouseIPC(win) {

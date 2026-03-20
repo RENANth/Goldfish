@@ -24,6 +24,7 @@ export async function loadSkin(name) {
         skin.rows = 1;
       }
       skin.loaded = true;
+      skin.transitionOpacity = 0;
       resolve(true);
     };
     skin.img.onerror = () => {

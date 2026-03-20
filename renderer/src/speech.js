@@ -1,4 +1,5 @@
 import { CONFIG } from "./config.js";
+import { getPhrases } from "./preferences.js";
 
 let speechEl = null;
 
@@ -7,7 +8,26 @@ export function initSpeech() {
 }
 
 export function pickPhrase() {
-  return CONFIG.PHRASES[Math.floor(Math.random() * CONFIG.PHRASES.length)];
+  const phrases = getPhrases();
+  if (phrases.length === 0) return ".";
+
+  const now = new Date();
+  const hour = now.getHours();
+  const day = now.getDay();
+  const isFriday = day === 5;
+
+  if (Math.random() < 0.15) {
+    const timeKey = hour < 12 ? "morning" : hour < 18 ? "afternoon" : "evening";
+    const timePhrases = CONFIG.TIME_PHRASES[timeKey] || [];
+    if (isFriday && CONFIG.TIME_PHRASES.friday) {
+      timePhrases.push(...CONFIG.TIME_PHRASES.friday);
+    }
+    if (timePhrases.length > 0) {
+      return timePhrases[Math.floor(Math.random() * timePhrases.length)];
+    }
+  }
+
+  return phrases[Math.floor(Math.random() * phrases.length)];
 }
 
 export function pickHappyPhrase() {

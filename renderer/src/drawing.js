@@ -4,6 +4,10 @@ import { updateSpeechPos, isSpeaking } from "./speech.js";
 export function drawFrame(ctx, canvas) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+  if (skin.transitionOpacity < 1) {
+    skin.transitionOpacity = Math.min(1, skin.transitionOpacity + 0.08);
+  }
+
   updateSpeechPos(
     fish.x,
     fish.y,
@@ -58,6 +62,8 @@ export function drawFrame(ctx, canvas) {
 
 function drawFish(ctx, f) {
   ctx.save();
+
+  ctx.globalAlpha = skin.transitionOpacity ?? 1;
 
   if (f.mood === "HAPPY") ctx.filter = "brightness(1.2) saturate(1.5)";
   if (f.mood === "DIZZY") ctx.filter = "hue-rotate(90deg) opacity(0.8)";

@@ -25,6 +25,7 @@ export const fish = {
 export const skin = {
   img: new Image(),
   loaded: false,
+  transitionOpacity: 1,
   cols: 8,
   rows: 2,
   frameW: 64,

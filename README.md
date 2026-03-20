@@ -16,6 +16,12 @@ Um Desktop Pet interativo desenvolvido em **Electron**, que traz um peixe pixela
 - **Sistema de Fala**: Balões de texto com frases motivacionais (ou nem tanto) de programador.
 - **Efeitos de Áudio**: Bips sintetizados que mudam conforme o humor do pet.
 - **Skins Customizáveis**: Fácil troca de aparência via pastas de skins.
+- **Preferências Persistentes**: Skin, personalidade e modo salvos entre sessões.
+- **Modo Colega de Trabalho**: Frases discretas e profissionais (menu de contexto).
+- **Frases Personalizadas**: Adicione suas próprias frases pelo menu.
+- **Reações por Horário**: Saudação e frases variam conforme manhã/tarde/noite e dia da semana.
+- **Bandeja do Sistema**: Ícone na bandeja com ações rápidas.
+- **Atalhos de Teclado**: `Ctrl+Shift+F` (alimentar), `Ctrl+Shift+S` (dormir).
 
 ---
 
@@ -82,7 +88,7 @@ Você pode criar novas aparências para o seu peixe facilmente:
      }
    }
    ```
-5. Mude a variável `skinName` no arquivo `renderer/src/state.js` para o nome da sua pasta.
+5. Selecione a nova skin pelo menu de contexto (clique direito) → Skin.
 
 ---
 

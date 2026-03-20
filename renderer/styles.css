@@ -1,3 +1,20 @@
+:root {
+  --speech-bg: rgba(20, 20, 25, 0.85);
+  --speech-border: #1ca3ec;
+  --speech-shadow: rgba(0, 0, 0, 0.5);
+}
+
+html.theme-night {
+  --speech-bg: rgba(10, 10, 20, 0.9);
+  --speech-border: #4a9eff;
+  --speech-shadow: rgba(0, 0, 40, 0.6);
+}
+
+html.theme-day {
+  --speech-bg: rgba(25, 30, 40, 0.85);
+  --speech-border: #1ca3ec;
+}
+
 html,
 body {
   margin: 0;
@@ -20,18 +37,18 @@ body {
 #speech {
   position: fixed;
   pointer-events: none;
-  background: rgba(20, 20, 25, 0.85);
+  background: var(--speech-bg);
   backdrop-filter: blur(8px);
   color: #fff;
   padding: 12px 16px;
-  border: 4px solid #1ca3ec;
+  border: 4px solid var(--speech-border);
   border-radius: 20px;
   font-family: "Press Start 2P", system-ui;
   font-size: 10px;
   line-height: 1.4;
   white-space: nowrap;
   transform: translate(-50%, -130%);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 8px 32px var(--speech-shadow);
   animation:
     popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
     float 3s ease-in-out infinite;
@@ -47,7 +64,7 @@ body {
   transform: translateX(-50%);
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-top: 15px solid #1ca3ec;
+  border-top: 15px solid var(--speech-border);
 }
 
 @keyframes popIn {

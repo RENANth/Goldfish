@@ -2,6 +2,11 @@ import { fish, skin, globals, setInteractionTime } from "./state.js";
 import { spawnFood, spawnToy, createHeart } from "./particles.js";
 import { loadSkin } from "./fish.js";
 import { CONFIG } from "./config.js";
+import {
+  setPreferences,
+  getPreferences,
+  addCustomPhrase,
+} from "./preferences.js";
 import { playSound } from "./audio.js";
 import { speak } from "./speech.js";
 
@@ -20,6 +25,7 @@ export function initInput() {
       fish.skinName = skinName;
       await loadSkin(skinName);
       if (skin.loaded) skin.currentAnim = "swim";
+      await setPreferences({ skinName });
       return;
     }
     if (action.startsWith("set-personality:")) {
@@ -31,6 +37,27 @@ export function initInput() {
         if (p === "calmo") fish.personality = CONFIG.PERSONALITIES.CALMO;
         if (p === "travesso") fish.personality = CONFIG.PERSONALITIES.TRAVESSO;
         if (p === "caotico") fish.personality = CONFIG.PERSONALITIES.CAOTICO;
+      }
+      await setPreferences({
+        personality: fish.personality,
+        personalityAuto: fish.personalityAuto,
+      });
+      return;
+    }
+    if (action === "toggle-work-mode") {
+      const prefs = getPreferences();
+      await setPreferences({ workMode: !prefs.workMode });
+      speak(prefs.workMode ? "Modo diversão ativado!" : "Modo colega ativado.");
+      return;
+    }
+    if (action === "add-custom-phrase") {
+      const phrase = window.prompt(
+        "Digite a frase personalizada:",
+        "Sua frase aqui",
+      );
+      if (phrase && phrase.trim()) {
+        const ok = await addCustomPhrase(phrase.trim());
+        speak(ok ? "Frase adicionada!" : "Frase já existe ou inválida.");
       }
       return;
     }

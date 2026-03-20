@@ -23,6 +23,22 @@ export const CONFIG = {
     "DESCANSA OS OLHOS 👀",
   ],
   HAPPY_PHRASES: ["NHAM NHAM!", "QUE DELÍCIA!", "TÔ FELIZ!", "OBRIGADO!", "❤"],
+  TIME_PHRASES: {
+    morning: ["HORA DO CAFÉ! ☕", "BOM DIA DE CÓDIGO!", "ACORDOU?"],
+    afternoon: ["BOA TARDE!", "FOCO NO TRABALHO.", "MEIO DO DIA!"],
+    evening: ["BOA NOITE DE CÓDIGO!", "HORA DO DESCANSO.", "DORMIR CEDO?"],
+    friday: ["SEXTOU! 🎉", "FIM DE SEMANA CHEGANDO!", "SEXTA-FEIRA!"],
+  },
+  WORK_PHRASES: [
+    "Bom trabalho.",
+    "Foco no que importa.",
+    "Pausa para respirar?",
+    "Café ajuda.",
+    "Tudo certo.",
+    "Continue assim.",
+    "Próximo passo.",
+    "Organize as ideias.",
+  ],
   PERSONALITIES: {
     CALMO: "calmo",
     TRAVESSO: "travesso",

@@ -1,5 +1,6 @@
 import { fish, skin, globals, rand } from "./state.js";
 import { CONFIG } from "./config.js";
+import { loadPreferences, setPreferences, getWorkMode } from "./preferences.js";
 import { initInput } from "./input.js";
 import { initSpeech, speak, pickPhrase } from "./speech.js";
 import { playBeep } from "./audio.js";
@@ -7,11 +8,22 @@ import { loadSkin } from "./fish.js";
 import { updatePhysics } from "./physics.js";
 import { drawFrame } from "./drawing.js";
 
+function applyDayNightTheme() {
+  const hour = new Date().getHours();
+  const isNight = hour >= 20 || hour < 6;
+  document.documentElement.classList.toggle("theme-night", isNight);
+  document.documentElement.classList.toggle("theme-day", !isNight);
+}
+
 (async () => {
   globals.canvas = document.getElementById("stage");
   globals.ctx = globals.canvas.getContext("2d");
 
   initSpeech();
+  const prefs = await loadPreferences();
+  fish.skinName = prefs.skinName;
+  fish.personality = prefs.personality;
+  fish.personalityAuto = prefs.personalityAuto;
 
   const bounds = await window.api.getScreenBounds();
   globals.canvas.width = bounds.width;
@@ -19,6 +31,9 @@ import { drawFrame } from "./drawing.js";
 
   await loadSkin(fish.skinName);
   if (skin.meta && skin.meta.displayScale) fish.scale = skin.meta.displayScale;
+
+  applyDayNightTheme();
+  setInterval(applyDayNightTheme, 60000);
 
   initInput();
 

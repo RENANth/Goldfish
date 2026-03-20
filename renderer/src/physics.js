@@ -74,7 +74,14 @@ export async function updatePhysics(dt, now) {
       if (fish.state === "dormindo") {
         fish.state = "ocioso";
         fish.idleTimer = 0;
-        speak("BOM DIA...");
+        const hour = new Date().getHours();
+        const greeting =
+          hour < 12
+            ? "BOM DIA..."
+            : hour < 18
+              ? "BOA TARDE..."
+              : "BOA NOITE...";
+        speak(greeting);
         fish.vy = -150;
       }
       fish.idleTimer = 0;
